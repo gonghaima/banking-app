@@ -1,5 +1,8 @@
-import { formatAmount } from '@/lib/utils';
+'use client';
+
 import React from 'react';
+import CountUp from 'react-countup';
+import AnimatedCounter from './AnimatedCounter';
 
 function TotalBalanceBox({
   accounts = [],
@@ -15,7 +18,13 @@ function TotalBalanceBox({
         <div className="flex flex-col gap-2">
           <p className="total-balance-label">Total Current Balance</p>
           <p className="total-balance-amount flex-center gap-2">
-            {formatAmount(totalCurrentBalance)}
+            <CountUp
+              decimals={2}
+              decimal=","
+              prefix="$"
+              end={totalCurrentBalance}
+            />
+            {/* <AnimatedCounter amount={totalCurrentBalance} /> Unhandled Runtime - Error: Hydration failed */}
           </p>
         </div>
       </div>
