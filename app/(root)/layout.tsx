@@ -1,44 +1,31 @@
-import MobileNav from '@/components/MobileNav';
-import Sidebar from '@/components/Sidebar';
-import Image from 'next/image';
+import MobileNav from "@/components/MobileNav";
+import Sidebar from "@/components/Sidebar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user: User = {
-    $id: 'u1234567890',
-    email: 'john.doe@example.com',
-    userId: 'user_001',
-    dwollaCustomerUrl:
-      'https://api.dwolla.com/customers/d1234567-89ab-cdef-0123-456789abcdef',
-    dwollaCustomerId: 'd1234567-89ab-cdef-0123-456789abcdef',
-    firstName: 'John',
-    lastName: 'Doe',
-    address1: '123 Main St',
-    city: 'Anytown',
-    state: 'CA',
-    postalCode: '12345',
-    dateOfBirth: '1985-06-15',
-    ssn: '123-45-6789',
-  };
+  const loggedIn = await getLoggedInUser();
 
-  const loggedIn = false;
-
-  if (!loggedIn) redirect('/sign-in');
+  if(!loggedIn) redirect('/sign-in')
 
   return (
     <main className="flex h-screen w-full font-inter">
-      <Sidebar user={user} />
-      <div className="root-layout">
-        <Image src="/icons/logo.svg" width={30} height={30} alt="logo" />
-        <div>
-          <MobileNav user={user} />
+      <Sidebar user={loggedIn} />
+
+      <div className="flex size-full flex-col">
+        <div className="root-layout">
+          <Image src="/icons/logo.svg" width={30} height={30} alt="logo" />
+          <div>
+            <MobileNav user={loggedIn} />
+          </div>
         </div>
+        {children}
       </div>
-      {children}
     </main>
   );
 }
