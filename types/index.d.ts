@@ -31,6 +31,7 @@ declare type User = {
   userId: string;
   dwollaCustomerUrl: string;
   dwollaCustomerId: string;
+  name: string;
   firstName: string;
   lastName: string;
   address1: string;
@@ -51,6 +52,7 @@ declare type NewUserParams = {
 declare type Account = {
   id: string;
   availableBalance: number;
+  balance: number;
   currentBalance: number;
   officialName: string;
   mask: string;

@@ -18,12 +18,12 @@ const {
 export const getUserInfo = async ({ userId }: getUserInfoProps) => {
   try {
     const { database } = await createAdminClient();
-    const client = new Client()
-      .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
-      .setKey(process.env.NEXT_APPWRITE_KEY!);
-    const users = new Users(client);
-    const user = await users.get(userId);
+    const user = await database.listDocuments(
+      DATABASE_ID!,
+      USER_COLLECTION_ID!,
+      [Query.equal('userId', [userId])]
+    )
+    return parseStringify(user.documents[0]);
     return parseStringify(user);
   } catch (error) {
     console.log(error);
@@ -113,6 +113,18 @@ export async function getLoggedInUser() {
     return parseStringify(user);
   } catch (error) {
     console.log(error);
+    return null;
+  }
+}
+
+export const logoutAccount = async () => {
+  try {
+    const { account } = await createSessionClient();
+
+    cookies().delete('appwrite-session');
+
+    await account.deleteSession('current');
+  } catch (error) {
     return null;
   }
 }
