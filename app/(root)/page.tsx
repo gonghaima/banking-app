@@ -26,7 +26,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
       {
         id: 1,
         amount: 100,
-        category: 'Food',
+        category: 'Food and Drink',
         date: '2021-10-10',
         description: 'Bought some food',
         type: 'expense',
@@ -42,9 +42,17 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
       {
         id: 3,
         amount: 300,
-        category: 'Transport',
+        category: 'Travel',
         date: '2021-10-10',
         description: 'Took a cab',
+        type: 'expense',
+      },
+      {
+        id: 4,
+        amount: 520,
+        category: 'Travel',
+        date: '2021-10-10',
+        description: 'Day trip to the beach',
         type: 'expense',
       },
     ],
