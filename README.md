@@ -14,9 +14,12 @@
 
   <h3 align="center">A Fintech Bank Application</h3>
 
-   <div align="center">
+   <div align="left">
      Hosted on <a href="https://banking-app-j66m.vercel.app/sign-in" target="_blank"><b>Banking Application</b></a><br/>
-     user: wendy@gmail.com psd: a...k
+     Website user: wendy@gmail.com psd: a...k <br/>
+     Link Bank - Plaid New account username: user_good
+      psd: pass_good
+      pin: credential_good (when required)
     </div>
 </div>
 
